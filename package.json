@@ -1,0 +1,27 @@
+{
+  "name": "piserver",
+  "version": "1.0.0",
+  "description": "Server for Raspberry to control the room.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gustoss/piServer.git"
+  },
+  "keywords": [
+    "raspberrypi",
+    "raspberry",
+    "pi"
+  ],
+  "author": "Augusto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gustoss/piServer/issues"
+  },
+  "homepage": "https://github.com/gustoss/piServer#readme",
+  "dependencies": {
+    "fastify": "^1.13.2"
+  }
+}
