@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/gustoss/piServer#readme",
   "dependencies": {
-    "fastify": "^1.13.2"
+    "fastify": "^1.13.2",
+    "mdns": "^2.4.0"
   }
 }

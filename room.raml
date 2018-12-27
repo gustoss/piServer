@@ -1,0 +1,144 @@
+#%RAML 1.0
+title: API of PIServer
+description: PIServer will be use to control all hardware in home
+version: v1
+baseUri: http://piserver.local/api/v1
+mediaType: application/json
+
+# Declaration of types
+types: 
+  specific:
+    description: Specific information about device
+    type: object
+    properties: 
+      id:
+        description: ID of this device
+        type: string
+        required: true
+      state:
+        description: Current state of port
+        type: boolean
+        required: true
+  info:
+    description: General information about device
+    type: object
+    properties: 
+      location:
+        description: Location where this device is
+        type: string
+        required: true
+        example: bedroom
+      name:
+        description: Name given for this port, this will be sync in all devices connected do PIServer
+        type: string
+        required: true
+        example: light
+      type:
+        description: Type of this port will be work
+        enum: [ toggle, joint ]
+        required: true
+      together:
+        description: If type of port is joint, other ports will be turn off before that is turn on
+        required: false
+        type: array
+        items: 
+          description: Name of port
+          type: object
+          properties:
+            name:
+              description: Name of port that is work together with this port
+              type: string
+              required: true
+              example: light
+  device:
+    description: All informtation about device
+    type: [ info, specific ]
+  pagination:
+    description: Information about pagination
+    type: object
+    properties: 
+      page: 
+        description: Current page to return
+        type: number
+        required: true
+        minimum: 0
+        format: int32
+        multipleOf: 1
+      size:
+        description: Size of page, how many items each request will return
+        type: number
+        required: true
+        minimum: 1
+        format: int32
+        multipleOf: 1
+
+# Declatation of Traits
+traits: 
+  queryPagination:
+    queryParameters: 
+      pagination:
+        required: false
+        type: pagination
+
+# Declararion of Routes
+/device:
+  /list:
+    get:
+      is: [ queryPagination ]
+      responses: 
+        200:
+          body: 
+            application/json:
+              type: device[]
+              minItems: 1
+  /{id}:
+    uriParameters: 
+      id: 
+        description: ID of device
+        type: string
+        required: true
+    get:
+      responses: 
+        200:
+          body: 
+            application/json:
+              type: device
+    put:
+      body: 
+        application/json:
+          description: Information to control the port
+          type: object
+          required: true
+          properties: 
+            state: 
+              description: Change state of port
+              type: boolean
+              required: true
+            time:
+              description: Time when must turn off the port
+              type: time-only
+              required: false
+              example: 09h08
+      responses: 
+        200:
+          body: 
+            application/json:
+              description: New state of the port
+              type: object
+              required: true
+              properties: 
+                state: 
+                  description: New state of the port
+                  type: boolean
+                  required: true
+                time:
+                  description: Time when must turn off the port
+                  type: time-only
+                  required: false
+                  example: 09h08
+    patch:
+      body:
+        application/json:
+          description: Information to change in device
+          type: info
+        
