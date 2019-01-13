@@ -1,0 +1,12 @@
+{
+  "dbConfig": {
+    "device": {
+      "filename": "/database/DeTest.db",
+      "autoload": true
+    },
+    "port": {
+      "filename": "/database/PoTest.db",
+      "autoload": true
+    }
+  }
+}

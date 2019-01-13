@@ -2,9 +2,9 @@
   "name": "piserver",
   "version": "1.0.0",
   "description": "Server for Raspberry to control the room.",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "main": "sh ./init.sh"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,11 @@
   },
   "homepage": "https://github.com/gustoss/piServer#readme",
   "dependencies": {
+    "awilix": "^4.0.1",
     "fastify": "^1.13.2",
-    "mdns": "^2.4.0"
+    "mdns": "^2.4.0",
+    "nedb": "^1.8.0",
+    "request": "^2.88.0",
+    "uuid": "^3.3.2"
   }
 }
