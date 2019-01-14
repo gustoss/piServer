@@ -10,6 +10,7 @@ Implemented com DI ([awilix](https://github.com/jeffijoe/awilix)), [NEDB](https:
 - [ ] Server with basic functions working
 - [ ] Add access out the local network
 - [ ] Access the application in any browser
+- [ ] Implements update of code in PiServer and Devices
 - [ ] Store each data of use of devices in network 
 
 Maybe I didn't forget nothing!
