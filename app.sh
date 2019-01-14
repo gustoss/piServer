@@ -20,10 +20,6 @@ showHelp() {
 test() {
   for item in $(echo "$1" | sed 's/,/\n/g'); do
     case $item in
-      cdb ) for i in $(cat config.json | grep '/database/.*\.db' | sed 's/.*"\//\//' | sed 's/",*//g'); do
-              echo > .$i
-            done
-      ;;
       rdb ) for i in $(cat config.json | grep '/database/.*\.db' | sed 's/.*"\//\//' | sed 's/",*//g'); do
               if [ -f ".$i" ]; then
                 rm .$i

@@ -24,7 +24,7 @@ container.register('request', asFunction(() => {
 }, { injectionMode: InjectionMode.CLASSIC }));
 
 container.register('db', asFunction(require('./database/db'), { injectionMode: InjectionMode.CLASSIC }));
-container.resolve('db');
+// container.resolve('db');
 
 container.loadModules(['actions/**/*.js'], {
   resolverOptions: {

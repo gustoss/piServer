@@ -1,7 +1,7 @@
 module.exports = (config) => {
   const Database = require('nedb');
   const path = require('path');
-
+  
   for (const i in config.dbConfig) 
     if (config.dbConfig[i].filename) config.dbConfig[i].filename = path.join('./', config.dbConfig[i].filename)
 

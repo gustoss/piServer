@@ -1,4 +1,5 @@
 module.exports = (mdns, db, request) => {
+  console.log(':)')
   mdns.on('serviceUp', async service => {
     console.log('serviceUp', service);
     if (service.txtRecord && service.txtRecord.platform === 'devicePointSwitch') {
@@ -12,7 +13,7 @@ module.exports = (mdns, db, request) => {
             method: 'PUT'
           });
         } catch (err) {
-          console.log(err);
+          console.log('ERRO!', err);
         }
         console.log(body);
         db.insertDevice({
