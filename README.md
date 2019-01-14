@@ -6,7 +6,7 @@ Implemented com DI ([awilix](https://github.com/jeffijoe/awilix)), [NEDB](https:
 - [x] RAML with RestFul of APIs
 - [x] Dependency Injection with [awilix](https://github.com/jeffijoe/awilix)
 - [ ] Save information to know all devices in network with [NEDB](https://github.com/louischatriot/nedb)
-- [ ] Implente all actions to control all devices knowledge (to after is easy to implemente [PI CAP](https://www.bareconductive.com/shop/pi-cap/)
+- [ ] Implements all actions to control all devices knowledge (to after is easy to implemente [PI CAP](https://www.bareconductive.com/shop/pi-cap/)
 - [ ] Server with basic functions working
 - [ ] Add access out the local network
 - [ ] Access the application in any browser
