@@ -2,7 +2,7 @@
 PiServe is an application or Server to control each device in your network.<br>
 Implemented com DI ([awilix](https://github.com/jeffijoe/awilix)), [NeDB](https://github.com/louischatriot/nedb) and after (when a get that) I will use [Pi Cap](https://www.bareconductive.com/shop/pi-cap/) like physics button.
 
-## Will be implemented
+## Will be implement
 - [x] RAML with RestFul of APIs
 - [x] Dependency Injection with [awilix](https://github.com/jeffijoe/awilix)
 - [X] Save information to know all devices in network with [NeDB](https://github.com/louischatriot/nedb)
