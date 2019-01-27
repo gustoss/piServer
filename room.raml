@@ -19,6 +19,10 @@ types:
         description: Current state of port
         type: boolean
         required: true
+      topic:
+        description: Current topic to publish
+        enum: [ switch, together ]
+        required: true
   info:
     description: General information about device
     type: object
@@ -33,22 +37,14 @@ types:
         type: string
         required: true
         example: light
-      type:
-        description: Type of this port will be work
-        enum: [ toggle, joint ]
-        required: true
       together:
         description: If type of port is joint, other ports will be turn off before that is turn on
         required: false
         type: array
         items: 
-          description: Name of port
-          type: object
-          properties:
-            id:
-              description: ID of port that is work together with this port
-              type: string
-              required: true
+          description: ID of port that is work together with this port
+          type: string
+          required: true
   device:
     description: All informtation about device
     type: [ info, specific ]
@@ -71,7 +67,7 @@ types:
         format: int32
         multipleOf: 1
 
-# Declatation of Traits
+# Declaration of Traits
 traits: 
   queryPagination:
     queryParameters: 
@@ -83,6 +79,7 @@ traits:
 /device:
   /list:
     get:
+      description: List all devices that server know
       is: [ queryPagination ]
       responses: 
         200:
@@ -97,44 +94,12 @@ traits:
         type: string
         required: true
     get:
+      description: Get only a device with this ID
       responses: 
         200:
           body: 
             application/json:
               type: device
-    put:
-      body: 
-        application/json:
-          description: Information to control the port
-          type: object
-          required: true
-          properties: 
-            state: 
-              description: Change state of port
-              type: boolean
-              required: true
-            time:
-              description: Time when must turn off the port
-              type: time-only
-              required: false
-              example: 09h08
-      responses: 
-        200:
-          body: 
-            application/json:
-              description: New state of the port
-              type: object
-              required: true
-              properties: 
-                state: 
-                  description: New state of the port
-                  type: boolean
-                  required: true
-                time:
-                  description: Time when must turn off the port
-                  type: time-only
-                  required: false
-                  example: 09h08
     patch:
       body:
         application/json:

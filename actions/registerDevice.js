@@ -1,29 +1,30 @@
-module.exports = (mdns, db, request) => {
-  console.log(':)')
+module.exports = (mdns, db, request, startDevice) => {
+  // Listen the MDns to find all devices in network and save with IP and give id for your ports
   mdns.on('serviceUp', async service => {
-    console.log('serviceUp', service);
     if (service.txtRecord && service.txtRecord.platform === 'devicePointSwitch') {
+      console.log(`\t***** DevicePointSwith find ${service.txtRecord.id}:${service.addresses[0]} *****`)
       if (!service.txtRecord.id) {
         const uuid = require('uuid/v5');
-        const id = uuid('devicepointswitch.com', uuid.DNS);
-        const body = undefined
+        const id = uuid('devicepointswitch.com', uuid.DNS); // Verify a way to change it
         try {
-          await request({
-            uri: `http://${service.addresses[0]}:${service.port}/id`,
-            method: 'PUT'
-          });
+          startDevice(id);
         } catch (err) {
           console.log('ERRO!', err);
         }
-        console.log(body);
-        db.insertDevice({
-          _id: id
-        })
+      } else {
+        const device = await db.findDevice(service.txtRecord.id);
+        try {
+          if (!device) {
+            await startDevice(service.txtRecord.id);
+          }
+        } catch (err) {
+          console.log('ERRO!', err);
+        }
       }
     }
   });
-
+  // Maybe remover this method
   mdns.on('serviceDown', service => {
-    console.log(service);
+    console.log('serviceDown', service);
   });
 }

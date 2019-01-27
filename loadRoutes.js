@@ -16,7 +16,7 @@ module.exports = (opts) => {
     for (const item of files) {
       const stat = fs.statSync(path.join(__dirname, opts.path, item));
       if (stat.isFile() && /\.js$/.test(item)) {
-        const fns = require(path.join(__dirname, opts.path, item))(opts.opts);
+        const fns = opts.container.build(require(path.join(__dirname, opts.path, item)), opts.mode);
         for (let i in fns) {
           const p = fns[i];
           methods[p.method.toLowerCase()](opts.basePath + p.path, p.handler);
